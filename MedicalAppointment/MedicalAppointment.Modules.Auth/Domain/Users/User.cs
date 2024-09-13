@@ -2,7 +2,7 @@
 using MedicalAppointment.Modules.Auth.Domain.Users.Events;
 using MedicalAppointment.Shared.Domain;
 
-namespace MedicalAppointment.Modules.Auth.Domain.Users
+namespace MedicalAppointment.Modules.Auth.Domain.Users.Rules
 {
     public class User : Entity<UserId>
     {
