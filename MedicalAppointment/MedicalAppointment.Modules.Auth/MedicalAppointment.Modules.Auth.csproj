@@ -15,6 +15,7 @@
     <Folder Include="Application\Configuration\" />
     <Folder Include="Application\Features\Authentication\" />
     <Folder Include="Application\Features\Authorization\" />
+    <Folder Include="Integration\Users\" />
   </ItemGroup>
 
   <ItemGroup>

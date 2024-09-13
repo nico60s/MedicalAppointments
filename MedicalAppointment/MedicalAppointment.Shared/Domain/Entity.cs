@@ -9,7 +9,7 @@ namespace MedicalAppointment.Shared.Domain
         protected Entity(T id) => Id = id;
         protected void CheckRule(IBusinessRule rule)
         {
-            if (rule.IsBroken())
+            if (rule.IsBroken)
             {
                 throw new BusinessRuleValidationException(rule);
             }

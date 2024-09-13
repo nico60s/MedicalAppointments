@@ -16,12 +16,13 @@ namespace MedicalAppointment.Modules.Auth.Domain.Users.Rules
                 _message = "Email was null or empty";
             }
             _isBroken = false;
-            _message = "Check";
+            _message = "Checked";
         }
 
 
         public bool IsBroken => _isBroken;
 
         public string Message => _message;
+
     }
 }

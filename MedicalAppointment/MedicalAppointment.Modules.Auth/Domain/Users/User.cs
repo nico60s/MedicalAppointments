@@ -15,6 +15,7 @@ namespace MedicalAppointment.Modules.Auth.Domain.Users.Rules
         private User(UserId id, string email, string password) : base(id) 
         {
             CheckRule(new MustNotBeNullOrEmptyBusinessRule(email));
+            CheckRule(new MustHaveEmailFormatBusinessRule(email));
             CheckRule(new MustNotBeNullOrEmptyBusinessRule(password));
 
             _events = [new UserCreatedDomainEvent(id)];

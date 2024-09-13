@@ -6,7 +6,5 @@ namespace MedicalAppointment.Shared.Domain
     {
         bool IsBroken { get; }
         string Message { get; }
-
-        bool IsBroken();
     }
 }

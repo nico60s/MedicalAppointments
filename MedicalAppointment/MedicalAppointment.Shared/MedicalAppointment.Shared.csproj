@@ -9,6 +9,11 @@
   <ItemGroup>
     <Folder Include="Application\" />
     <Folder Include="Infrastructure\Configuration\" />
+    <Folder Include="Infrastructure\DomainEventDispatching\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
 </Project>
