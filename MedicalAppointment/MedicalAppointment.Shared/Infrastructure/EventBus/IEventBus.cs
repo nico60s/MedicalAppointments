@@ -1,5 +1,4 @@
 ﻿
-using static MedicalAppointment.Shared.Infrastructure.EventBus.IIntegrationEventHandler;
 
 namespace MedicalAppointment.Shared.Infrastructure.EventBus
 {
