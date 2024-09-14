@@ -8,7 +8,7 @@ namespace MedicalAppointment.Modules.Auth.Domain.Credentials
         private const string CREDENTIAL_HASH = "credentialHash";
         public CredentialId Id { get; }
 
-        public override IReadOnlyCollection<IDomainEvent> Events => throw new NotImplementedException();
+        public override IReadOnlyCollection<IIntegrationEvent> Events => throw new NotImplementedException();
 
         private Credential(CredentialId id) : base(id)
         {

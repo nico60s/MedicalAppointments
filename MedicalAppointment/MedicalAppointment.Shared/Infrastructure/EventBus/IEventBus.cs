@@ -1,33 +1,17 @@
 ﻿
-
-using MediatR;
-using MedicalAppointment.Shared.Domain;
-using Microsoft.Extensions.DependencyInjection;
+using static MedicalAppointment.Shared.Infrastructure.EventBus.IIntegrationEventHandler;
 
 namespace MedicalAppointment.Shared.Infrastructure.EventBus
 {
     public interface IEventBus
     {
-        Task PublishAsync<TEvent>(TEvent @event) where TEvent : IDomainEvent;
-    }
+        Task Publish<T>(T @event)
+          where T : IntegrationEvent;
 
-    public class EventBus : IEventBus
-    {
-        private readonly IServiceProvider _serviceProvider;
+        void Subscribe<T>(IIntegrationEventHandler<T> handler)
+            where T : IntegrationEvent;
 
-        public EventBus(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
-
-        public async Task PublishAsync<TEvent>(TEvent @event) where TEvent : IDomainEvent
-        {
-            var handlers = _serviceProvider.GetServices<INotificationHandler<TEvent>>();
-            foreach (var handler in handlers)
-            {
-                await handler.Handle(@event, CancellationToken.None);
-            }
-        }
+        void StartConsuming();
     }
 
 }

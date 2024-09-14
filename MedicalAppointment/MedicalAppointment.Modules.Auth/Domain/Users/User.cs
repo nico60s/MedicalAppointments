@@ -6,11 +6,11 @@ namespace MedicalAppointment.Modules.Auth.Domain.Users.Rules
 {
     public class User : Entity<UserId>
     {
-        private readonly List<IDomainEvent> _events;
+        private readonly List<IIntegrationEvent> _events;
         public string Email { get; set; } 
         public string Password { get; set; }
         
-        public override IReadOnlyCollection<IDomainEvent> Events => _events;
+        public override IReadOnlyCollection<IIntegrationEvent> Events => _events;
 
         private User(UserId id, string email, string password) : base(id) 
         {
