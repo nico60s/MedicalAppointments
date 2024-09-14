@@ -22,12 +22,12 @@ namespace MedicalAppointment.Shared.Infrastructure.EventBus
         {
             var eventType = typeof(T);
 
-            if (!_handlersDictionary.ContainsKey(eventType))
+            if (!_handlersDictionary.TryGetValue(eventType, out List<object>? value))
             {
                 return;
             }
 
-            var handlers = _handlersDictionary[eventType];
+            var handlers = value;
             foreach (var handler in handlers)
             {
                 if (handler is IIntegrationEventHandler<T> integrationEventHandler)
@@ -39,7 +39,6 @@ namespace MedicalAppointment.Shared.Infrastructure.EventBus
 
         public void StartConsuming()
         {
-            // Implementar la lógica para iniciar el consumo de eventos, si es necesario
         }
     }
 }
