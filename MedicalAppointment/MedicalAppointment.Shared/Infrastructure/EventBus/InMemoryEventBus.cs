@@ -3,59 +3,44 @@ using static MedicalAppointment.Shared.Infrastructure.EventBus.IIntegrationEvent
 
 namespace MedicalAppointment.Shared.Infrastructure.EventBus
 {
-    public class InMemoryEventBus
+    public class InMemoryEventBus : IEventBus
     {
-        private readonly IDictionary<string, List<object>> _handlersDictionary;
+        private readonly IDictionary<Type, List<object>> _handlersDictionary = new Dictionary<Type, List<object>>();
 
-        private InMemoryEventBus()
+        public void Subscribe<T>(IIntegrationEventHandler<T> handler) where T : IIntegrationEvent
         {
-            _handlersDictionary = new Dictionary<string, List<object>>();
-        }
-        public static InMemoryEventBus Instance { get; } = new InMemoryEventBus();
+            var eventType = typeof(T);
 
-        public void Subscribe<T>(IIntegrationEventHandler<T> handler)
-            where T : IntegrationEvent
-        {
-            var eventType = typeof(T).FullName;
-
-            if (eventType != null)
+            if (!_handlersDictionary.ContainsKey(eventType))
             {
-                if (!_handlersDictionary.TryGetValue(eventType, out List<object>? value))
-                {
-                    value = [];
-                    _handlersDictionary[eventType] = value;
-                }
-
-                value.Add(handler);
+                _handlersDictionary[eventType] = [];
             }
+
+            _handlersDictionary[eventType].Add(handler);
         }
 
-        public async Task Publish<T>(T @event)
-            where T : IntegrationEvent
+        public async Task PublishAsync<T>(T @event) where T : IIntegrationEvent
         {
-            var eventType = @event.GetType().FullName;
+            var eventType = typeof(T);
 
-            if (eventType == null || !_handlersDictionary.TryGetValue(eventType, out List<object>? value))
+            if (!_handlersDictionary.ContainsKey(eventType))
             {
                 return;
             }
 
-            var handlers = value;
-
+            var handlers = _handlersDictionary[eventType];
             foreach (var handler in handlers)
             {
                 if (handler is IIntegrationEventHandler<T> integrationEventHandler)
                 {
-                    try
-                    {
-                        await integrationEventHandler.Handle(@event);
-                    }
-                    catch (Exception ex)
-                    {
-                        
-                        throw new Exception($"Error handling event: {ex.Message} in EventBus");
-                    }
+                    await integrationEventHandler.Handle(@event, CancellationToken.None);
                 }
             }
         }
+
+        public void StartConsuming()
+        {
+            // Implementar la lógica para iniciar el consumo de eventos, si es necesario
+        }
     }
+}

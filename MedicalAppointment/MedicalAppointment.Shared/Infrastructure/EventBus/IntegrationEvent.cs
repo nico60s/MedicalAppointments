@@ -4,7 +4,7 @@ using MediatR;
 
 namespace MedicalAppointment.Shared.Infrastructure.EventBus
 {
-    public abstract class IntegrationEvent : INotification
+    public abstract class IntegrationEvent : IIntegrationEvent
     {
         public Guid Id { get; }
 
