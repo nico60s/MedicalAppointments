@@ -18,10 +18,10 @@ namespace MedicalAppointment.Modules.Auth.Domain.Users.Rules
             CheckRule(new MustHaveEmailFormatBusinessRule(email));
             CheckRule(new MustNotBeNullOrEmptyBusinessRule(password));
 
-            _events = [new UserCreatedDomainEvent(id)];
             Email = email;
             Password = password;
-            
+            _events = [new UserCreatedDomainEvent(id)];
+
         }
         public static User CreateNew(string email, string password) {
 

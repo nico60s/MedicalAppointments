@@ -7,6 +7,6 @@ namespace MedicalAppointment.Modules.Auth.Domain.Users
     public interface IUserRepository
     {
         Task<User?> Exist(UserId userId);
-        User GetByEmail(string email);
+        Task<User> GetByEmail(string email);
     }
 }

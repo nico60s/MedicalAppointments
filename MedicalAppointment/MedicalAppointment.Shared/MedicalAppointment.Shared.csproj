@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\" />
     <Folder Include="Infrastructure\Configuration\" />
     <Folder Include="Infrastructure\DomainEventDispatching\" />
   </ItemGroup>
