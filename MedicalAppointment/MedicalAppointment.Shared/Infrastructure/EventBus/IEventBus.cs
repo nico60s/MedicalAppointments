@@ -1,16 +1,10 @@
 ﻿
-using static MedicalAppointment.Shared.Infrastructure.EventBus.IIntegrationEventHandler;
-
 namespace MedicalAppointment.Shared.Infrastructure.EventBus
 {
     public interface IEventBus
     {
-        Task Publish<T>(T @event)
-          where T : IntegrationEvent;
-
-        void Subscribe<T>(IIntegrationEventHandler<T> handler)
-            where T : IntegrationEvent;
-
+        Task PublishAsync<T>(T @event) where T : IIntegrationEvent;
+        void Subscribe<T>(IIntegrationEventHandler<T> handler) where T : IIntegrationEvent;
         void StartConsuming();
     }
 

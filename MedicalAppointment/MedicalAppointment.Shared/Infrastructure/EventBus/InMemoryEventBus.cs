@@ -1,40 +1,44 @@
 ﻿
 
-
 namespace MedicalAppointment.Shared.Infrastructure.EventBus
 {
     public class InMemoryEventBus : IEventBus
     {
-        private readonly Dictionary<string, List<IIntegrationEventHandler>> _handlers;
+        private readonly IDictionary<Type, List<object>> _handlersDictionary = new Dictionary<Type, List<object>>();
 
-        public InMemoryEventBus()
+        public void Subscribe<T>(IIntegrationEventHandler<T> handler) where T : IIntegrationEvent
         {
-            _handlers = [];
-        }
-        public async Task Publish<T>(T @event) where T : IntegrationEvent
-        {
-            var eventType  = @event.GetType().FullName;
-            if (eventType is null) return;
-            
-            var integrationEventHandlers = _handlers[eventType]; //Muchas handlers suscriptos a un evento
+            var eventType = typeof(T);
 
-            foreach(var integrationEventHandler in integrationEventHandlers)
+            if (!_handlersDictionary.ContainsKey(eventType))
             {
-                if(integrationEventHandler is IIntegrationEventHandler<T> handler)
+                _handlersDictionary[eventType] = [];
+            }
+
+            _handlersDictionary[eventType].Add(handler);
+        }
+
+        public async Task PublishAsync<T>(T @event) where T : IIntegrationEvent
+        {
+            var eventType = typeof(T);
+
+            if (!_handlersDictionary.TryGetValue(eventType, out List<object>? value))
+            {
+                return;
+            }
+
+            var handlers = value;
+            foreach (var handler in handlers)
+            {
+                if (handler is IIntegrationEventHandler<T> integrationEventHandler)
                 {
-                    await handler.Handle(@event);
+                    await integrationEventHandler.Handle(@event, CancellationToken.None);
                 }
             }
         }
 
         public void StartConsuming()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Subscribe<T>(IIntegrationEventHandler.IIntegrationEventHandler<T> handler) where T : IntegrationEvent
-        {
-            throw new NotImplementedException();
         }
     }
 }
