@@ -10,7 +10,7 @@ namespace MedicalAppointment.Modules.Auth
         public static IServiceCollection AddAuthModuleConfiguration(this IServiceCollection services,
                                                                     IConfiguration configuration) 
         {
-            services.AddScoped<>
+           
             return services;
         }
     }
