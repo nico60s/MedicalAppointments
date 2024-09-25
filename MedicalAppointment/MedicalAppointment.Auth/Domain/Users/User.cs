@@ -1,12 +1,11 @@
 ﻿
-using MedicalAppointment.Modules.Auth.Domain.Users.Events;
+using MedicalAppointment.Auth.Domain.Users.Events;
 using MedicalAppointment.Shared.Domain;
 
-namespace MedicalAppointment.Modules.Auth.Domain.Users.Rules
+namespace MedicalAppointment.Auth.Domain.Users.Rules
 {
     public class User : Entity<UserId>
     {
-        private readonly List<IIntegrationEvent> _events;
         public string Email { get; set; } 
         public string Password { get; set; }
         

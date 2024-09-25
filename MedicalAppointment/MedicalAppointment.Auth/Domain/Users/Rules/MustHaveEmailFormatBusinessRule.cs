@@ -2,7 +2,7 @@
 using MedicalAppointment.Shared.Domain;
 using System.Text.RegularExpressions;
 
-namespace MedicalAppointment.Modules.Auth.Domain.Users.Rules
+namespace MedicalAppointment.Auth.Domain.Users.Rules
 {
     public partial class MustHaveEmailFormatBusinessRule : IBusinessRule
     {

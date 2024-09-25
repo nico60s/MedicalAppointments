@@ -1,7 +1,6 @@
 ﻿using MedicalAppointment.Shared.Domain;
-using System.Net.Sockets;
 
-namespace MedicalAppointment.Modules.Auth.Domain.Users
+namespace MedicalAppointment.Auth.Domain.Users
 {
     public class UserId : ValueObject
     {

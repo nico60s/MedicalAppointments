@@ -3,7 +3,7 @@
 using MedicalAppointment.Modules.Auth.Domain.Users;
 using MedicalAppointment.Modules.Auth.Domain.Users.Rules;
 
-namespace MedicalAppointment.Modules.Auth.Domain
+namespace MedicalAppointment.Auth.Domain
 {
     public interface IUserService
     {
