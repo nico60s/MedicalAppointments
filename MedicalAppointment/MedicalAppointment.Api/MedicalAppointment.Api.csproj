@@ -7,13 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Auth\**" />
+    <Content Remove="Auth\**" />
+    <EmbeddedResource Remove="Auth\**" />
+    <None Remove="Auth\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Auth\" />
-    <Folder Include="Middlewares\" />
-    <Folder Include="Pacientes\"/>
+    <Folder Include="Controllers\Pacientes\Responses\" />
+    <Folder Include="Controllers\Pacientes\Requests\" />
+    <Folder Include="Middlewares\Authentication\" />
+    <Folder Include="Middlewares\Authorization\" />
+    <!--<Folder Include="Pacientes\"/>-->
   </ItemGroup>
 
 </Project>
