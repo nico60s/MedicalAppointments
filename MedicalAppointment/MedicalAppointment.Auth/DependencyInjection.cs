@@ -3,7 +3,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MedicalAppointment.Modules.Auth
+namespace MedicalAppointment.Auth
 {
     public static class DependencyInjection
     {

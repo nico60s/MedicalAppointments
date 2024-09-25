@@ -1,6 +1,6 @@
 ﻿using MedicalAppointment.Shared.Domain;
 
-namespace MedicalAppointment.Modules.Auth.Domain.Users.Events
+namespace MedicalAppointment.Auth.Domain.Users.Events
 {
     public class UserCreatedDomainEvent : DomainEvent
     {

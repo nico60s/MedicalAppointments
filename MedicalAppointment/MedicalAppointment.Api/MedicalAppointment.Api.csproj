@@ -11,8 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Auth\" />
+    <Folder Include="Auth\" />
     <Folder Include="Middlewares\" />
+    <Folder Include="Pacientes\"/>
   </ItemGroup>
 
 </Project>

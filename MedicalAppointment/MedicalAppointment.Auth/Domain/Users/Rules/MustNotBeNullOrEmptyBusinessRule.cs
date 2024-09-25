@@ -1,6 +1,6 @@
 ﻿using MedicalAppointment.Shared.Domain;
 
-namespace MedicalAppointment.Modules.Auth.Domain.Users.Rules
+namespace MedicalAppointment.Auth.Domain.Users.Rules
 {
     public class MustNotBeNullOrEmptyBusinessRule : IBusinessRule
     {

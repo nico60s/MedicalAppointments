@@ -1,4 +1,4 @@
-﻿namespace MedicalAppointment.Modules.Auth.Domain
+﻿namespace MedicalAppointment.Modules.Auth.Application.Contracts
 {
     public interface IAuthenticationService
     {
