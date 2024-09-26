@@ -1,8 +1,14 @@
 ﻿
 namespace MedicalAppointment.Shared.Domain
 {
-    public abstract class ValueObject : IValueObject
+    public abstract class ValueObject : IValueObject<object>
     {
+        public Object Value;
+
+        object IValueObject<object>.Value =>((ValueObject)Value).Value;
+
+        protected ValueObject(Object value) => Value = value;
+       
         protected static bool EqualOperator(ValueObject left, ValueObject right)
         {
             if (ReferenceEquals(left, null) ^ ReferenceEquals(right, null))
