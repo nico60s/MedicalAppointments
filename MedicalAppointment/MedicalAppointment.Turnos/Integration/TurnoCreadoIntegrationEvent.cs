@@ -12,13 +12,14 @@ namespace MedicalAppointment.Turnos.Integration
         public Guid Id => _id;
         public Guid PacienteId { get; private set; }
         public Guid ProfesionalId   { get; private set; }
+        private DateTime _occurredOn => DateTime.Now;
         public TurnoCreadoIntegrationEvent(PacienteId pacienteId,
             ProfesionalId profesionalId)
         {
             PacienteId = pacienteId.Value;
             ProfesionalId = profesionalId.Value;
         }
-        public DateTime OccurredOn => throw new NotImplementedException();
+        public DateTime OccurredOn => _occurredOn;
 
         public TurnoCreadoIntegrationEvent(TurnoCreadoDomainEvent @event)
         {

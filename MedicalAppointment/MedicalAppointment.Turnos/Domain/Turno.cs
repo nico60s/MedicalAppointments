@@ -3,7 +3,7 @@ using MedicalAppointment.Shared.Domain;
 
 namespace MedicalAppointment.Turnos.Domain
 {
-    public class Turno : Entity<TurnoId>
+    public class Turno : Entity<TurnoId>, IHasDomainEvent
     {
         public PacienteId PacienteId { get; private set; }
         public ProfesionalId ProfesionalId { get; private set; }
