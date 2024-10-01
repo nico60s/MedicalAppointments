@@ -3,7 +3,7 @@ namespace MedicalAppointment.Shared.Domain
 {
     public abstract class ValueObject : IValueObject<object>
     {
-        public Object Value;
+        public object Value;
 
         object IValueObject<object>.Value =>((ValueObject)Value).Value;
 
