@@ -9,6 +9,6 @@ namespace MedicalAppointment.Turnos.Domain
         {
         }
         public static TurnoId Create() => new(Guid.NewGuid());
-        public static TurnoId FromGuid(Guid value) => new(value)
+        public static TurnoId FromGuid(Guid value) => new(value);
     }
 }

@@ -9,7 +9,7 @@ using MedicalAppointment.Turnos.Integration;
 
 namespace MedicalAppointment.Turnos.Application.CreateTurno
 {
-    public class CreateTurnoCommandHandler : ICommandHandler<CreateTurnoCommand>
+    internal class CreateTurnoCommandHandler : ICommandHandler<CreateTurnoCommand>
     {
 
         private readonly ITurnoRepository _turnoRepository;
@@ -20,23 +20,18 @@ namespace MedicalAppointment.Turnos.Application.CreateTurno
             _turnoRepository = turnoRepository;
             _eventBus = eventBus;
         }
-        public void Handle(CreateTurnoCommand command)
+        public async Task Handle(CreateTurnoCommand request, CancellationToken cancellationToken)
         {
             var turno = new Turno(
-                id: TurnoId.Create(),
-                pacienteId: PacienteId.FromGuid(command.PacienteId),
-                profesionalId: ProfesionalId.FromGuid(command.ProfesionalId),
-                fechaTurno: command.FechaTurno);
+               id: TurnoId.Create(),
+               pacienteId: PacienteId.FromGuid(request.PacienteId),
+               profesionalId: ProfesionalId.FromGuid(request.ProfesionalId),
+               fechaTurno: request.FechaTurno);
 
-            var turnoCreadoEvent = new TurnoCreadoDomainEvent(turno.Id);
-            var turnoCreadoIntegrationEvent = new TurnoCreadoIntegrationEvent(turnoCreadoEvent);
+            var turnoCreadoIntegrationEvent =
+                new TurnoCreadoIntegrationEvent(new TurnoCreadoDomainEvent(turno.Id));
 
-            _eventBus.PublishAsync<TurnoCreadoIntegrationEvent>(turnoCreadoIntegrationEvent);
-        }
-
-        public Task Handle(CreateTurnoCommand request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
+            await _eventBus.PublishAsync<TurnoCreadoIntegrationEvent>(turnoCreadoIntegrationEvent);
         }
     }
 }
