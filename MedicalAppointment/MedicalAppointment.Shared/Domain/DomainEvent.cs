@@ -9,9 +9,9 @@ namespace MedicalAppointment.Shared.Domain
         private readonly Guid _id;
         public DateTime OccurredOn { get;  }
         public Guid Id => _id;
-        protected DomainEvent(Guid id)
+        protected DomainEvent()
         {
-            _id = id;
+            _id = Guid.NewGuid();
             OccurredOn = DateTime.Now;  
         }
 

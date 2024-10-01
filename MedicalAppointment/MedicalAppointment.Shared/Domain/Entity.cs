@@ -4,8 +4,7 @@ namespace MedicalAppointment.Shared.Domain
 {
     public abstract class Entity<T> where T : ValueObject
     {
-        protected T Id { get; set; }
-        public abstract IReadOnlyCollection<IIntegrationEvent> Events { get; }
+        public T Id { get; set; }
         protected Entity(T id) => Id = id;
         protected void CheckRule(IBusinessRule rule)
         {

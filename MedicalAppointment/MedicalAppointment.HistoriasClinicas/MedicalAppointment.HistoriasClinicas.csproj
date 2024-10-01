@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\" />
+    <ProjectReference Include="..\MedicalAppointment.Shared\MedicalAppointment.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\Events\" />
+    <Folder Include="Domain\Rules\" />
   </ItemGroup>
 
 </Project>
