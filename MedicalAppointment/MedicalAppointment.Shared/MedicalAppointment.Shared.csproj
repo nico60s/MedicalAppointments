@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Configuration\" />
     <Folder Include="Integration\" />
   </ItemGroup>
 
